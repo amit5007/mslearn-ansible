@@ -1,10 +1,10 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
 - task: Ansible@0
   inputs:
     ansibleInterface: 'remoteMachine'
@@ -16,6 +16,3 @@ trigger:
     inventoryFileSourceRemoteMachine: 'agentMachine'
     inventoryFileLinkedArtifactOnRemoteMachine: 'azure_rm.yml'
     args: '--private-key ~/.ssh/ansible_rsa'
-pool:
-  vmImage: 'ubuntu-latest'
-
